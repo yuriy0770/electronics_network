@@ -52,7 +52,6 @@ class NetworkNodeCreateUpdateSerializer(serializers.ModelSerializer):
         return network_node
 
     def update(self, instance, validated_data):
-        # Запрещаем обновление debt_to_supplier через API
         if 'debt_to_supplier' in validated_data:
             validated_data.pop('debt_to_supplier')
 
