@@ -47,7 +47,7 @@ class NetworkNode(models.Model):
     contact = models.OneToOneField(
         Contact,
         on_delete=models.CASCADE,
-        related_name='networknode',  # ДОБАВЛЕНО related_name
+        related_name='networknode',
         verbose_name='Контактная информация'
     )
     products = models.ManyToManyField(
@@ -89,7 +89,6 @@ class NetworkNode(models.Model):
         return f"{self.get_node_type_display()}: {self.name}"
 
     def save(self, *args, **kwargs):
-        # Автоматический расчет уровня иерархии
         if self.supplier:
             self.level = self.supplier.level + 1
         else:
